@@ -1,0 +1,11 @@
+services:
+  moments-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: moments-backend:prod
+    container_name: moments-backend
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8080:8080" # or "127.0.0.1:8080:8080" if using a reverse proxy
