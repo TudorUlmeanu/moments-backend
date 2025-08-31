@@ -5,7 +5,11 @@ import publishRouter from "./routes/publish";
 
 const app = express();
 
-const allowed = ["http://localhost:5173", "http://127.0.0.1:5173"];
+const allowed = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://main.d35yvrqjty7o2b.amplifyapp.com/",
+];
 const localhostRegex = /^http:\/\/localhost:\d+$/;
 
 app.use(
@@ -26,9 +30,6 @@ app.use(
 app.use(express.json());
 app.get("/health", (_req, res) => res.json({ ok: true }));
 app.use("/api", publishRouter);
-
-// ❌ remove this for Express 5:
-// app.options("*", cors());
 
 const port = Number(process.env.PORT || 8080);
 app.listen(port, () => console.log(`API on :${port}`));
